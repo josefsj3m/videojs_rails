@@ -11,7 +11,7 @@ The video.js' version used is 4.12.15.
 Add to your Gemfile
 
 ```ruby
-gem 'videojs_rails'
+gem 'videojs_rails', git: "https://github.com/josefsj3m/videojs_rails.git", branch: 'master'
 ```
 
 And run bundle to install the library.
