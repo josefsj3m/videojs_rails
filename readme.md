@@ -1,6 +1,10 @@
 # VideoJS for Rails Asset Pipeline
 
-Supports Rails 3.x and 4.x
+This gem has been modified to Rails 4.x. Video.js' language files are bundle inside this gem also.
+
+It is used the stable version of video.js in GitHub (branch stable) to compile video.js.
+
+The video.js' version used is 4.12.15.
 
 ## Installation
 

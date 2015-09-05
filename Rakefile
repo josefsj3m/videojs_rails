@@ -15,7 +15,8 @@ namespace :videojs do
     Dir.chdir(VIDEO_JS_HOME) do
       puts "* Building video.js #{tag} using grunt"
       unless ENV['NOBUILD']
-        sh "git checkout -q master"
+        #sh "git checkout -q master"
+        sh "git checkout -q stable"
         sh "git pull -q"
         sh "git checkout -q #{tag}"
         sh "sudo grunt"
@@ -28,6 +29,7 @@ namespace :videojs do
       sh "cp #{VIDEO_JS_HOME}/dist/video-js/video-js.css #{VIDEO_JS_RAILS_HOME}/vendor/assets/stylesheets/"
       sh "cp #{VIDEO_JS_HOME}/dist/video-js/video-js.swf #{VIDEO_JS_RAILS_HOME}/vendor/assets/javascripts/"
       sh "cp #{VIDEO_JS_HOME}/dist/video-js/video.dev.js #{VIDEO_JS_RAILS_HOME}/vendor/assets/javascripts/"
+      sh "cp #{VIDEO_JS_HOME}/dist/video-js/lang/* #{VIDEO_JS_RAILS_HOME}/vendor/assets/javascripts/lang"
 
       # Now, perform some asset_path and other substitutions
       puts
