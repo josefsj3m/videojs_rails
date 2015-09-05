@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Sean Behan"]
   s.email       = ["bseanvt@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{VideoJS plugin for Rails 3.1 Asset Pipeline}
+  s.summary     = %q{VideoJS plugin for Rails 4 Asset Pipeline}
   s.description = %q{HTML5 VideoJS plugin}
 
   s.rubyforge_project = "videojs_rails"

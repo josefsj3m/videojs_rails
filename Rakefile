@@ -18,7 +18,7 @@ namespace :videojs do
         sh "git checkout -q master"
         sh "git pull -q"
         sh "git checkout -q #{tag}"
-        sh "grunt"
+        sh "sudo grunt"
       end
 
       # Copy files into our Rails structure
