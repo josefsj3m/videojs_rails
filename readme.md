@@ -52,7 +52,19 @@ Rails.application.config.assets.precompile += %w( video-js.swf vjs.eot vjs.svg v
 ## Usage
 
 ```erb
-<%= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"400" %>
+<%= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm", ogg: "http://another.com/path/to/video.ogv"}, setup: "{}", controls: false, width:"400" %>
+```
+
+If you want to specify a codec for the video type modify it to include the codec, you must use double quotes for the codec. For instance, you can use this syntax for the webm:
+
+```erb
+<%= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", 'webm;codecs="vp8,vorbis"': "http://another.com/path/to/video.webm"}, setup: "{}", controls: false, width:"400" %>
+```
+
+Or for ogg video:
+
+```erb
+<%= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", 'ogg;codecs="theora,vorbis"': "http://another.com/path/to/video.ogv"}, setup: "{}", controls: false, width:"400" %>
 ```
 
 If you want add a callback if user don't support JavaScript use block with displayed html code:
@@ -61,6 +73,34 @@ If you want add a callback if user don't support JavaScript use block with displ
 <%= videojs_rails sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm" }, width:"400" do %>
 	Please enable <b>JavaScript</b> to see this content.
 <%- end %>
+```
+
+If using haml use this:
+
+```haml
+= videojs_rails(sources: { mp4: "http://domain.com/path/to/video.mp4", webm: "http://another.com/path/to/video.webm" }, width:"400"){Please enable <b>JavaScript</b> to see this content.}
+```
+
+## Html output
+
+The helper method videojs_rails generates a html video tag surrounded by a div tag:
+
+```haml
+= videojs_rails sources: { mp4: video_path('intro1.mp4'),
+                          'webm;codecs="vp8,vorbis"': video_path('intro3.webm')},
+                         setup: "{}", controls: true, autoplay: true, loop:true, width: '100%', height: '600px', style: 'height:auto;overflow:hidden' do
+  'Turn on javascript to see this video.'                           
+```
+
+The above code generates this html, and it is important to note that all tags specified in style: will be inserted into video tag:
+
+```html
+<div id="vjs_video_3" class=" video-js vjs-default-skin vjs-controls-enabled vjs-playing vjs-has-started vjs-user-inactive" data-setup="{}" style="height: 600px; overflow: hidden; width: 100%;" loop="true" autoplay="true" preload="auto">
+    <video preload="auto" autoplay="" loop="" style="height:auto;overflow:hidden" data-setup="{}" class="vjs-tech" id="vjs_video_3_html5_api" src="/assets/webex-639e5225ff2f30315507fdabc5faf4db.mp4">
+      <source src="/assets/intro1-639e5225ff2f30315507fdabc5faf4db.mp4" type="video/mp4"/>
+      <source src="/assets/intro3-21dbbfe2f72850402d7ddbddcfc07f30.webm" type="video/webm;codecs=&quot;vp8,vorbis&quot;"/>
+    </video>
+</div>                              
 ```
 
 ## Captions
